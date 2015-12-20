@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="invoApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="invoApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="invoApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="invoApp" class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Invoker Games</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- dev -->
+<!--
+<link rel="stylesheet" href="components/foundation/css/foundation.min.css">
+<link rel="stylesheet" href="css/main.css">
+
+<script src="components/lodash/lodash.min.js"></script>
+<script src="components/angular/angular.js"></script>
+<script src="components/angular-route/angular-route.min.js"></script>
+<script src="components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+<script src="components/angular-hotkeys/build/hotkeys.min.js"></script>
+<script src="app.js"></script>
+-->
+
+<!-- prod -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.0.5/css/foundation.min.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300" type="text/css">
+<link rel="stylesheet" href="css/main.css">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.2/angular-local-storage.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.6.0/hotkeys.min.js"></script>
+<script src="app.js"></script>
+</head>
+<body>
+<div class="ig-main-body" ng-controller="mainController" data-ng-init="init()">
+  <div class="row">
+    <div class="ig-breadcrumbs columns">
+      <nav aria-label="You are here:" role="navigation">
+        <ul class="breadcrumbs">
+          <li><a href="#" class="disabled">Games</a></li>
+          <li><a href="#" class="enabled">Survival</a></li>
+        </ul>
+      </nav>
+    </div><!-- .ig-breadcrumbs -->
+    
+    <div class="ig-content large-12">
+      <div class="ig-center large-8 columns">
+        <div class="ig-game">
+          <div class="ig-game-bg columns"></div>
+          <div class="ig-game-inner columns">
+            <header class="game-header">Survival</header>
+
+            <div class="game-title">
+              For practicing your invoker skills
+            </div>
+
+            <div class="targeted-skill">{{targetedSkill.name}}</div>
+            
+            <div class="pressed-key-wrap">
+              <div class="pressed-key-box">{{invokedOrbs[0]}}</div>
+              <div class="pressed-key-box">{{invokedOrbs[1]}}</div>
+              <div class="pressed-key-box">{{invokedOrbs[2]}}</div>
+            </div><!-- .pressed-key-wrap -->
+
+            <div class="key-wrap">
+              <div ng-click="updateKeyPress(key.quas)" class="key-box key-quas"><div class="key">{{key.quas}}</div></div>
+              <div ng-click="updateKeyPress(key.wex)" class="key-box key-wex"><div class="key">{{key.wex}}</div></div>
+              <div ng-click="updateKeyPress(key.exort)" class="key-box key-exort"><div class="key">{{key.exort}}</div></div>
+              <div ng-click="validateSkill1()" class="key-box key-spell1 {{getSpell1CssClass()}}"><div class="key">{{key.spell1}}</div></div>
+              <div ng-click="validateSkill2()" class="key-box key-spell2 {{getSpell2CssClass()}}"><div class="key">{{key.spell2}}</div></div>
+              <div ng-click="invokeSkill()" class="key-box key-invoke"><div class="key">{{key.invoke}}</div></div>
+            </div><!-- .key-wrap -->
+
+            <div class="reset-btn" ng-click="resetGame()">Reset</div>
+          </div><!-- .ig-game-inner -->
+        </div><!-- .ig-game -->
+        <div class="ig-trick columns">
+        </div><!-- .ig-trick -->
+      </div><!-- .ig-center -->
+
+      <div class="ig-right large-4 columns">
+        <div class="ig-widget-box clearfix ig-skill">
+          <a class="sidebar-header enabled">Skills</a>
+          <div class="sidebar-content columns">
+            <ul class="skill-list">
+              <li ng-repeat="skill in skills" class="skill-item">
+                <div class="skill-img {{getSkillCssClass(skill.key)}}" alt="{{skill.name}}" title="{{skill.name}}">&nbsp;</div>
+                <span class="skill-name">{{skill.name}}</span>
+                <span ng-repeat="orb in skill.orbs track by $index" class="orb {{getOrbClass(orb)}}">{{orb}}</span>
+              </li>
+            </ul>
+          </div>
+        </div><!-- .ig-widget-box -->
+
+        <div class="ig-widget-box clearfix ig-controll hide">
+          <a class="sidebar-header enabled">Controlls</a>
+          <div class="sidebar-content columns">
+            <ul>
+              <li><span class="key">{{key.quas}}</span> - Quas</li>
+              <li><span class="key">{{key.wex}}</span> - Wex</li>
+              <li><span class="key">{{key.exort}}</span> - Exort</li>
+              <li><span class="key">{{key.invoke}}</span> - Invoke</li>
+              <li><span class="key">{{key.spell1}}</span> - Spell 1</li>
+              <li><span class="key">{{key.spell2}}</span> - Spell 2</li>
+            </ul>
+          </div>
+        </div><!-- .ig-widget-box -->
+
+        <div class="ig-widget-box clearfix ig-stat">
+          <a class="sidebar-header enabled">Stats</a>
+          <div class="sidebar-content columns">
+            <ul>
+              <li>Orbs Invoked: {{stats.nPressed | number}}</li>
+              <li>Skills Invoked: {{stats.nSkillInvoked | number}}</li>
+              <li>Targeted Skills Invoked: {{stats.nTargetedSkillInvoked | number}}</li>
+              <li>Stages: {{stats.nStage | number}}</li>
+              <li>Pressed / Skill: {{stats.nPressedPerSkill | number}}</li>
+              <li>Pressed / Targeted Skill: {{stats.nPressedPerTargetedSkill | number}}</li>
+              <li>Latest Key: {{stats.latestKey | uppercase}}</li>
+            </ul>
+          </div>
+        </div><!-- .ig-widget-box -->
+      </div><!-- .ig-right -->
+    </div><!-- .ig-content -->
+  </div>
+</div><!-- .ig-main-body -->
+</body>
+</html>

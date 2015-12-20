@@ -1,0 +1,31 @@
+{
+  "name": "invoker-games",
+  "version": "1.0.0",
+  "description": "Invoker game for practicing your invoker skills",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jojoee/invoker-games.git"
+  },
+  "keywords": [
+    "invoker",
+    "game",
+    "dota"
+  ],
+  "author": "Jojoee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jojoee/invoker-games/issues"
+  },
+  "homepage": "https://github.com/jojoee/invoker-games#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.1",
+    "gulp": "^3.9.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.1.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.15",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.19"
+  }
+}

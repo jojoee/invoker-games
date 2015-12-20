@@ -1,0 +1,92 @@
+[
+{
+  "key": "cold-snap",
+  "name": "Cold Snap",
+  "orbs": [
+    "q",
+    "q",
+    "q"
+  ]
+},
+{
+  "key": "ghost-walk",
+  "name": "Ghost Walk",
+  "orbs": [
+    "q",
+    "q",
+    "w"
+  ]
+},
+{
+  "key": "ice-wall",
+  "name": "Ice Wall",
+  "orbs": [
+    "q",
+    "q",
+    "e"
+  ]
+},
+{
+  "key": "emp",
+  "name": "EMP",
+  "orbs": [
+    "w",
+    "w",
+    "w"
+  ]
+},
+{
+  "key": "tornado",
+  "name": "Tornado",
+  "orbs": [
+    "w",
+    "w",
+    "q"
+  ]
+},
+{
+  "key": "alacrity",
+  "name": "Alacrity",
+  "orbs": [
+    "w",
+    "w",
+    "e"
+  ]
+},
+{
+  "key": "sun-strike",
+  "name": "Sun Strike",
+  "orbs": [
+    "e",
+    "e",
+    "e"
+  ]
+},
+{
+  "key": "forge-spirit",
+  "name": "Forge Spirit",
+  "orbs": [
+    "e",
+    "e",
+    "q"
+  ]
+},
+{
+  "key": "chaos-meteor",
+  "name": "Chaos Meteor",
+  "orbs": [
+    "e",
+    "e",
+    "w"
+  ]
+},
+{
+  "key": "deafening-blast",
+  "name": "Deafening Blast",
+  "orbs": [
+    "q",
+    "w",
+    "e"
+  ]
+}
+]

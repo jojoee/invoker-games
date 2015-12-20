@@ -1,0 +1,43 @@
+{
+  "name": "gulp-starter",
+  "description": "Simple gulp to make frontend life easier (gulp for static site builder)",
+  "main": "",
+  "authors": [
+    "Jojoee"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "gulp",
+    "starter",
+    "boilerplate",
+    "simple",
+    "easy",
+    "frontend",
+    "template",
+    "static",
+    "builder"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angularfire": "~1.1.3",
+    "foundation": "~5.5.3",
+    "font-awesome": "~4.5.0",
+    "lodash": "~3.10.1",
+    "angular-route": "~1.4.8",
+    "angular": "~1.4.8",
+    "angular-mocks": "~1.4.8",
+    "angular-local-storage": "~0.2.3",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.6.0"
+  }
+}

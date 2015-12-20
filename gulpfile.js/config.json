@@ -1,0 +1,28 @@
+{
+  "tasks": {
+
+    "sass": {
+      "src": "app/scss/*.scss",
+      "dest": "app/css",
+      "opt": {
+        "sourceComments": false,
+        "outputStyle": "compressed"
+      },
+      "browserSyncOpt": {
+        "once": true
+      }
+    },
+
+    "serve": {
+      "watch": {
+        "html": "app/index.html",
+        "js": "app/**/*.js",
+        "sass": "app/scss/*.scss"
+      },
+      "browserSyncInit": {
+        "server": "app",
+        "open": true
+      }
+    }
+  }
+}

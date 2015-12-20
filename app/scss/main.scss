@@ -1,0 +1,450 @@
+// @import 'vars';
+// @import 'typography';
+// @import 'vendor';
+// @import 'menu';
+// @import 'body';
+
+/*================================================================
+  #VAR
+  ================================================================*/
+
+// colors
+$font-color--dark: #333;
+$font-color--light: #fff;
+$background--light: #eee;
+$background--dark: #222;
+
+$black: #0A1010;
+$grey: #929292;
+$white: #ffffff;
+$blue: #67C1F5;
+$green: #1fe27b; // unused
+$red: #e21f3f; // unused
+$orange: #F0A738; // unused
+
+// spacing
+$space: 6px;
+$space2: 12px;
+$space3: 18px;
+$space4: 24px;
+$space5: 30px;
+$space6: 36px;
+$space7: 42px;
+$space9: 48px;
+$space9: 54px;
+
+// font sizing
+$font-size--xs: 10px;
+$font-size--sm: 12px;
+$font-size--md: 16px;
+$font-size--lg: 24px;
+$font-size--xl: 32px;
+
+$quas-color: #7998b5;
+$wex-color: #d671a9;
+$exort-color: #cabe68;
+
+/*================================================================
+  #VENDOR
+  ================================================================*/
+
+.top-bar {
+  background-color: $black;
+
+  ul {
+    background-color: $black;
+  }
+}
+
+
+/*================================================================
+  #GLOBAL
+  ================================================================*/
+
+a {
+  text-decoration: none !important; 
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+a,
+button {
+  -webkit-transition: all 0.2s ease;
+     -moz-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+       -o-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+
+.ig-text-shadow {
+  text-shadow: 0px 0px 10px #FFF;
+}
+
+.ig-text-highlight-base {
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+
+.ig-text-highlight {
+  @extend .ig-text-highlight-base;
+  color: $white;
+}
+
+.ig-text-highlight-enabled {
+  @extend .ig-text-highlight-base;
+  @extend .ig-text-shadow;
+  color: $white;
+}
+
+.ig-text-highlight-disabled {
+  @extend .ig-text-highlight-base;
+  color: #435767;
+}
+
+/*================================================================
+  #GENERAL
+  ================================================================*/
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  background: $black;
+}
+
+.skill-cold-snap        { background-image: url('../img/skill-cold-snap.png'); }
+.skill-ghost-walk       { background-image: url('../img/skill-ghost-walk.png'); }
+.skill-ice-wall         { background-image: url('../img/skill-ice-wall.png'); }
+.skill-emp              { background-image: url('../img/skill-emp.png'); }
+.skill-tornado          { background-image: url('../img/skill-tornado.png'); }
+.skill-alacrity         { background-image: url('../img/skill-alacrity.png'); }
+.skill-sun-strike       { background-image: url('../img/skill-sun-strike.png'); }
+.skill-forge-spirit     { background-image: url('../img/skill-forge-spirit.png'); }
+.skill-chaos-meteor     { background-image: url('../img/skill-chaos-meteor.png'); }
+.skill-deafening-blast  { background-image: url('../img/skill-deafening-blast.png'); }
+
+/*================================================================
+  #MENU
+  ================================================================*/
+
+.ig-top-menu {
+  background-image: linear-gradient(to top, #171717, #111, #040404, #010101);
+  border-bottom: 1px solid #31302E;
+  position: relative;
+  z-index: 1;
+  color: $white;
+
+  -webkit-box-shadow: 0px 0px 18px 0px rgba(10, 16, 16, 1);
+     -moz-box-shadow: 0px 0px 18px 0px rgba(10, 16, 16, 1);
+          box-shadow: 0px 0px 18px 0px rgba(10, 16, 16, 1);
+
+  a {
+    color: #908d8b;
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.ig-logo {
+  // background-image: url('../img/logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  width: 126px;
+  background-position: left center;
+  height: 36px;
+  display: block;
+  text-align: right;
+}
+
+/*================================================================
+  #BODY
+  ================================================================*/
+
+.ig-main-body {
+  position: relative;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+  
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  background-color: #647E8E;
+
+  // background-image: url('../img/bg.jpg');
+  // background-color: #060709;
+}
+
+.ig-breadcrumbs {
+  padding-top: $space9;
+  padding-bottom: $space9;
+
+  ul {
+    margin: 0;
+    background: none;
+    border: none;
+  }
+
+  a {
+    @extend .ig-text-highlight-disabled;
+    font-size: 28px;
+
+    &.enabled {
+      @extend .ig-text-highlight-enabled;
+    }
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    font-size: 28px;
+    color: #435767;
+  }
+
+  .breadcrumbs > :before {
+    font-size: 28px;
+  }
+}
+
+/*================================================================
+  #BODY - CONTENT
+  ================================================================*/
+
+.ig-game {
+  border: 1px solid #31302E;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  box-shadow: 0px 0px 18px 0px #0a1010;
+  height: 600px;
+}
+
+.ig-game-bg {
+  // background-image: url('../img/bg-game.jpg');
+  background-color: #5891B5;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  height: 100%;
+  width: 100%;
+  opacity: 0.2;
+  z-index: -1;
+  position: absolute;
+}
+
+.ig-game-inner {
+  height: 600px;
+  background-image: url('../img/overlay2.png');
+  position: relative;
+  z-index: 0;
+}
+
+.game-header {
+  @extend .ig-text-highlight-enabled;
+  font-size: 36px;
+  padding: 24px;
+  text-align: center;
+}
+
+.game-title {
+  text-align: center;
+}
+
+.targeted-skill {
+  text-align: center;
+  margin-top: $space6;
+}
+
+.key-wrap {
+  display: block;
+  text-align: center;
+  width: 492px;
+  height: 82px;
+  position: absolute;
+  bottom: 48px;
+}
+
+.pressed-key-wrap {
+  width: 320px;
+  display: block;
+  position: relative;
+  height: 120px;
+  margin: 0 auto;
+  margin-top: $space6;
+}
+
+.key-box,
+.pressed-key-box {
+  float: left;
+  position: relative;
+
+  cursor: pointer;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.key-box {
+  width: 82px;
+  height: 82px;
+  background-color: $black;
+  border: 1px solid $white;
+
+  .key {
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+
+    display: block;
+    background-color: $black;
+
+    text-transform: uppercase;
+  }
+}
+
+.pressed-key-box {
+  height: 100px;
+  width: 100px;
+  background-color: $black;
+  border: 1px solid $white;
+
+  line-height: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: $space6;
+}
+
+.key-quas   { background-image: url('../img/orb-quas.png'); }
+.key-wex    { background-image: url('../img/orb-wex.png'); }
+.key-exort  { background-image: url('../img/orb-exort.png'); }
+.key-invoke { background-image: url('../img/skill-invoke.png')}
+.key-spell1 {}
+.key-spell2 {}
+
+.bar-countdown {
+  background-color: $black;
+  height: 30px;
+  width: 100%;
+  top: 200px;
+  position: relative;
+}
+
+.reset-btn {
+  background-color: $grey;
+  float: right;
+  cursor: pointer;
+  padding: 12px;
+  position: absolute;
+  bottom: 48px;
+  right: .9375rem;
+}
+
+/*================================================================
+  #BODY - RIGHT
+  ================================================================*/
+
+.ig-right {
+  
+  ul {
+    list-style-type: none;
+    margin-bottom: 0;
+  }
+}
+
+// for extend only
+.sidebar-header-enabled {
+  @extend .ig-text-shadow;
+  color: $white;
+  border: 1px solid $white;
+}
+
+.ig-widget-box {
+
+}
+
+.sidebar-header {
+  @extend .ig-text-highlight;
+  border: 1px solid $blue;
+  display: block;
+  padding: 12px;
+  margin-bottom: 1rem;
+  color: $blue;
+  
+  &.enabled,
+  &:hover {
+    @extend .sidebar-header-enabled;
+  }
+}
+
+.sidebar-content {
+  color: $white;
+  margin-bottom: 1rem;
+
+  &.disabled {
+    height: 0;
+  }
+}
+
+.ig-skill {
+  color: $white;
+
+  .skill-item {
+    margin-bottom: 6px;
+
+    span {
+      height: 24px;
+      line-height: 24px;
+      display: inline-block;
+    }
+  }
+
+  .skill-img {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    float: left;
+  }
+
+  .skill-name {
+
+    &:after {
+      margin-left: 6px;
+      content: '-';
+    }
+  }
+}
+
+.orb-quas { color: $quas-color; }
+.orb-wex { color: $wex-color; }
+.orb-exort { color: $exort-color; }
+
+.orb {
+  font-weight: 600;
+  text-transform: uppercase;
+
+  margin-right: 2px;
+
+  &:last-child {
+    margin-right: 0px;
+  }
+}
+
+.ig-controll {
+  
+  .key {
+    color: $blue;
+    text-transform: uppercase;
+  }
+}
