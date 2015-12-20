@@ -38,6 +38,7 @@ For practicing your invoker skills
 - add `combination` feature (each stage can have more than 1 targeted skill)
 - add `combination` stats
 - add error screen when we can not get skill data
+- handle app when waiting skill data from http request
 - add pages
   - invoker profile
   - videos
