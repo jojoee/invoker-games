@@ -256,14 +256,17 @@ angular.module(appName).controller('mainController', [
         $scope.skills = skills
         $scope.nSkill = $scope.skills.length;
 
+        $scope.setTargetedSkill();
+
         localStorageService.set(appSkillDataName, skillsJson); // save skill's data into local storage
       });
 
     } else {
-      $log.log('found skill\'s data in local storage');
 
       $scope.skills = JSON.parse($scope.skills);
       $scope.nSkill = $scope.skills.length;
+
+      $scope.setTargetedSkill();
     }
 
     $scope.orderAllSkillOrbs();
@@ -344,8 +347,6 @@ angular.module(appName).controller('mainController', [
 
   $scope.init = function () {
     $scope.initSkillData();
-
-    $scope.setTargetedSkill();
   }
 
   /* ================================ PUBLIC FUNC - EVENT ================================ */
