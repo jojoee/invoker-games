@@ -1,21 +1,15 @@
 {
-  "name": "gulp-starter",
-  "description": "Simple gulp to make frontend life easier (gulp for static site builder)",
+  "name": "invoker-games",
+  "description": "Invoker game for practicing your invoker skills",
   "main": "",
   "authors": [
     "Jojoee"
   ],
   "license": "MIT",
   "keywords": [
-    "gulp",
-    "starter",
-    "boilerplate",
-    "simple",
-    "easy",
-    "frontend",
-    "template",
-    "static",
-    "builder"
+    "invoker",
+    "game",
+    "dota"
   ],
   "moduleType": [
     "node"
