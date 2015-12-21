@@ -39,6 +39,9 @@ For practicing your invoker skills
 - add `combination` stats
 - add error screen when we can not get skill data
 - handle app when waiting skill data from http request
+- when click `Reset` button then remove invoked orbs
+- unordered skill orbs on right sidebar
+- change sass compression type (from `compressed` to `expanded`)
 - add pages
   - invoker profile
   - videos
