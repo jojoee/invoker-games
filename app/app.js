@@ -174,12 +174,12 @@ angular.module(appName).controller('mainController', [
 
   /* ================================ PRIVATE FUNC - HELPER ================================ */
 
-  $scope.hasNoInvokedSkill = function () {
+  var hasNoInvokedSkill = function () {
     return $scope.invokedSkills[0] === null;
   }
 
   // unused
-  $scope.hasOneInvokedSkill = function () {
+  var hasOneInvokedSkill = function () {
     if ($scope.invokedSkills[0] !== null &&
       $scope.invokedSkills[1] === null) {
       return true;
@@ -189,25 +189,25 @@ angular.module(appName).controller('mainController', [
     }
   }
 
-  $scope.updateNPressedPerSkill = function () {
+  var updateNPressedPerSkill = function () {
     if ($scope.stats.nSkillInvoked > 0) {
       $scope.stats.nPressedPerSkill = $scope.stats.nPressed / $scope.stats.nSkillInvoked;
     }
   }
 
-  $scope.updateNPressedPerTargetedSkill = function () {
+  var updateNPressedPerTargetedSkill = function () {
     if ($scope.stats.nTargetedSkillInvoked > 0) {
       $scope.stats.nPressedPerTargetedSkill = $scope.stats.nPressed / $scope.stats.nTargetedSkillInvoked;
     }
   }
 
-  $scope.getTargetedSkill = function () {
+  var getTargetedSkill = function () {
     var randomSkillIdx = _.random(0, $scope.nSkill - 1);
     var randomSkill = $scope.skills[randomSkillIdx];
     var randomSkillKey = randomSkill.key;
 
     // first generate targeted skill (no invoked skill)
-    if ($scope.hasNoInvokedSkill()) {
+    if (hasNoInvokedSkill()) {
       return randomSkill;
 
     // has one invoked skill and
@@ -216,7 +216,7 @@ angular.module(appName).controller('mainController', [
       if (randomSkill.key === $scope.invokedSkills[0].key) {
         $log.log('generated skill is duplicate with latest invoked skill, it will generate new one');
 
-        return $scope.getTargetedSkill();
+        return getTargetedSkill();
         
       } else {
         return randomSkill
@@ -226,9 +226,9 @@ angular.module(appName).controller('mainController', [
     return randomSkill;
   }
 
-  $scope.updateInvokedSkills = function (skill) {
+  var updateInvokedSkills = function (skill) {
     // first invoked skill
-    if ($scope.hasNoInvokedSkill()) {
+    if (hasNoInvokedSkill()) {
       $scope.invokedSkills[0] = skill;
 
     // second invoked skill and
@@ -239,13 +239,13 @@ angular.module(appName).controller('mainController', [
     }
   }
 
-  $scope.orderAllSkillOrbs = function () {
+  var orderAllSkillOrbs = function () {
     angular.forEach($scope.skills, function (val, key) {
       $scope.skills[key].orbs = _.sortBy(val.orbs);
     });
   }
 
-  $scope.initSkillData = function () {
+  var initSkillData = function () {
     if (! $scope.skills) {
       $log.log('not found skill\'s data in local storage');
 
@@ -269,14 +269,14 @@ angular.module(appName).controller('mainController', [
       $scope.setTargetedSkill();
     }
 
-    $scope.orderAllSkillOrbs();
+    orderAllSkillOrbs();
 
     $log.debug('$scope.skills', $scope.skills);
     $log.debug('$scope.nSkill', $scope.nSkill);
   }
 
   $scope.setTargetedSkill = function() {
-    $scope.targetedSkill = $scope.getTargetedSkill();
+    $scope.targetedSkill = getTargetedSkill();
 
     $log.debug('$scope.targetedSkill', $scope.targetedSkill);
   }
@@ -308,7 +308,7 @@ angular.module(appName).controller('mainController', [
         // update stat
         $scope.stats.nStage++;
         $scope.stats.nTargetedSkillInvoked++;
-        $scope.updateNPressedPerTargetedSkill();
+        updateNPressedPerTargetedSkill();
 
       } else {
         $log.log('not valid skill');
@@ -346,7 +346,7 @@ angular.module(appName).controller('mainController', [
   }
 
   $scope.init = function () {
-    $scope.initSkillData();
+    initSkillData();
   }
 
   /* ================================ PUBLIC FUNC - EVENT ================================ */
@@ -359,7 +359,7 @@ angular.module(appName).controller('mainController', [
     // update stat
     $scope.stats.nPressed++;
     $scope.stats.latestKey = key;
-    $scope.updateNPressedPerSkill();
+    updateNPressedPerSkill();
   }
 
   $scope.invokeSkill = function () {
@@ -385,11 +385,11 @@ angular.module(appName).controller('mainController', [
         $log.log('valid orbs');
 
         // update invoked skill
-        $scope.updateInvokedSkills(invokedSkill);
+        updateInvokedSkills(invokedSkill);
 
         // update stat
         $scope.stats.nSkillInvoked++;
-        $scope.updateNPressedPerSkill();
+        updateNPressedPerSkill();
 
       } else {
         $log.log('skill already invoked');
