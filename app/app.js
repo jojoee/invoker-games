@@ -430,6 +430,7 @@ angular.module(appName).controller('mainController', [
     $log.log('statService.reset()', statService.reset());
     $scope.stats = statService.reset();
     $scope.invokedSkills = [null, null];
+    $scope.invokedOrbs = ['', '', ''];
 
     $scope.setTargetedSkill();
   }
