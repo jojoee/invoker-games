@@ -6,7 +6,7 @@
       "dest": "app/css",
       "opt": {
         "sourceComments": false,
-        "outputStyle": "compressed"
+        "outputStyle": "expanded"
       },
       "browserSyncOpt": {
         "once": true
