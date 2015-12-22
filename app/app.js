@@ -204,7 +204,7 @@ angular.module(appName).controller('mainController', [
         $scope.skills = skills
         $scope.nSkill = $scope.skills.length;
 
-        $scope.setTargetedSkill();
+        setTargetedSkill();
 
         localStorageService.set(appSkillDataName, skillsJson); // save skill's data into local storage
       });
@@ -214,7 +214,7 @@ angular.module(appName).controller('mainController', [
       $scope.skills = JSON.parse($scope.skills);
       $scope.nSkill = $scope.skills.length;
 
-      $scope.setTargetedSkill();
+      setTargetedSkill();
     }
 
     orderAllSkillOrbs();
@@ -223,7 +223,7 @@ angular.module(appName).controller('mainController', [
     $log.debug('$scope.nSkill', $scope.nSkill);
   }
 
-  $scope.setTargetedSkill = function() {
+  var setTargetedSkill = function() {
     $scope.targetedSkill = getTargetedSkill();
 
     $log.debug('$scope.targetedSkill', $scope.targetedSkill);
@@ -234,24 +234,24 @@ angular.module(appName).controller('mainController', [
   // 
   // http://stackoverflow.com/questions/28947253/sort-array-with-lodash-by-value-integer
   // http://stackoverflow.com/questions/29951293/using-lodash-to-compare-arrays
-  $scope.isSameOrbArr = function (orderedArr1, orderedArr2) {
+  var isSameOrbArr = function (orderedArr1, orderedArr2) {
     return _.isEqual(orderedArr1, orderedArr2);
   }
 
-  $scope.getSpellCssClass = function (idx) {
+  var getSpellCssClass = function (idx) {
     var skill = $scope.invokedSkills[idx];
     var cssClass = (skill) ? $scope.getSkillCssClass(skill.key) : '';
 
     return cssClass;
   }
 
-  $scope.validateSkill = function (invokedSkill) {
+  var validateSkill = function (invokedSkill) {
     if (invokedSkill) {
       if (invokedSkill.key === $scope.targetedSkill.key) {
         $log.log('valid skill');
 
         // generate new targeted skill
-        $scope.setTargetedSkill();
+        setTargetedSkill();
 
         // update stat
         $scope.stats.nStage++;
@@ -319,7 +319,7 @@ angular.module(appName).controller('mainController', [
 
     angular.forEach($scope.skills, function (skill, key) {
       if (loopFlag) {
-        if ($scope.isSameOrbArr(invokedOrbs, skill.orbs)) {
+        if (isSameOrbArr(invokedOrbs, skill.orbs)) {
           invokedSkill = skill;
           loopFlag = false; // break
         }
@@ -355,22 +355,22 @@ angular.module(appName).controller('mainController', [
   }
 
   $scope.getSpell1CssClass = function () {
-    return $scope.getSpellCssClass(0);
+    return getSpellCssClass(0);
   }
 
   $scope.getSpell2CssClass = function () {
-    return $scope.getSpellCssClass(1);
+    return getSpellCssClass(1);
   }
 
   $scope.validateSkill1 = function () {
-    $scope.validateSkill($scope.invokedSkills[0]);
+    validateSkill($scope.invokedSkills[0]);
 
     // update stat
     $scope.stats.latestKey = $scope.key.spell1;
   }
 
   $scope.validateSkill2 = function () {
-    $scope.validateSkill($scope.invokedSkills[1]);
+    validateSkill($scope.invokedSkills[1]);
 
     // update stat
     $scope.stats.latestKey = $scope.key.spell2;
@@ -382,7 +382,7 @@ angular.module(appName).controller('mainController', [
     $scope.invokedSkills = [null, null];
     $scope.invokedOrbs = ['', '', ''];
 
-    $scope.setTargetedSkill();
+    setTargetedSkill();
   }
 
   /*================================================================ PUBLIC - KEY BINDING
