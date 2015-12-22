@@ -205,6 +205,7 @@ angular.module(appName).controller('mainController', [
         $scope.nSkill = $scope.skills.length;
 
         setTargetedSkill();
+        orderAllSkillOrbs();
 
         localStorageService.set(appSkillDataName, skillsJson); // save skill's data into local storage
       });
@@ -215,9 +216,8 @@ angular.module(appName).controller('mainController', [
       $scope.nSkill = $scope.skills.length;
 
       setTargetedSkill();
+      orderAllSkillOrbs();
     }
-
-    orderAllSkillOrbs();
 
     $log.debug('$scope.skills', $scope.skills);
     $log.debug('$scope.nSkill', $scope.nSkill);
