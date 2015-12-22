@@ -104,15 +104,13 @@ angular.module(appName).controller('mainController', [
   'appConstant', 'skillService', 'keyValue', 'statService', // app
   function ($scope, $http, $log, localStorageService, hotkeys, appConstant, skillService, keyValue, statService) {
 
-  /* ================================ VALUE ================================ */
-
   var imgPath = appConstant.imgPath;
   var appSkillDataName = appConstant.appSkillDataName;
 
   // gameStage
   // - start
   // - over
-  $scope.gameStage = 'start';
+  $scope.gameStage = 'start'; // unused
   $scope.key = keyValue;
   $scope.stats = statService.get();
   $scope.invokedOrbs = ['', '', '']; // starter key pressed
@@ -122,7 +120,8 @@ angular.module(appName).controller('mainController', [
   $scope.invokedSkills = [null, null]; // only 2 skills
 
 
-  /* ================================ KEY BINDING ================================ */
+  /*================================================================ PUBLIC - KEY BINDING
+  */
 
   hotkeys.add({
     combo: $scope.key.quas,
@@ -172,7 +171,8 @@ angular.module(appName).controller('mainController', [
     }
   });
 
-  /* ================================ PRIVATE FUNC - HELPER ================================ */
+  /* ================================================================ PRIVATE - HELPER
+  */
 
   var hasNoInvokedSkill = function () {
     return $scope.invokedSkills[0] === null;
@@ -316,7 +316,8 @@ angular.module(appName).controller('mainController', [
     }
   }
 
-  /* ================================ PUBLIC FUNC - HELPER & INIT ================================ */
+  /* ================================================================ PUBLIC - HELPER & INIT
+  */
   
   // unused
   $scope.getSkillImgPath = function (fileName) {
@@ -349,7 +350,8 @@ angular.module(appName).controller('mainController', [
     initSkillData();
   }
 
-  /* ================================ PUBLIC FUNC - EVENT ================================ */
+  /* ================================================================ PUBLIC - EVENT
+  */
 
   $scope.updateKeyPress = function (key) {
     // update invoked orbs
