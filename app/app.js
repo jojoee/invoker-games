@@ -337,7 +337,7 @@ angular.module(appName).controller('mainController', [
     var invokedSkill1Key = ($scope.invokedSkills[0]) ? $scope.invokedSkills[0].key : '';
     var invokedSkill2Key = ($scope.invokedSkills[1]) ? $scope.invokedSkills[0].key : '';
 
-    if (invokedSkill.key) {
+    if (invokedSkill && invokedSkill.key) {
       if (invokedSkill.key !== invokedSkill1Key &&
         invokedSkill.key !== invokedSkill2Key) {
         $log.log('valid orbs');
