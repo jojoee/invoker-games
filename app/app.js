@@ -119,58 +119,6 @@ angular.module(appName).controller('mainController', [
   $scope.targetedSkill = null;
   $scope.invokedSkills = [null, null]; // only 2 skills
 
-
-  /*================================================================ PUBLIC - KEY BINDING
-  */
-
-  hotkeys.add({
-    combo: $scope.key.quas,
-    description: 'press ' + $scope.key.quas,
-    callback: function() {
-      $scope.updateKeyPress($scope.key.quas);
-    }
-  });
-
-  hotkeys.add({
-    combo: $scope.key.wex,
-    description: 'press ' + $scope.key.wex,
-    callback: function() {
-      $scope.updateKeyPress($scope.key.wex);
-    }
-  });
-
-  hotkeys.add({
-    combo: $scope.key.exort,
-    description: 'press ' + $scope.key.exort,
-    callback: function() {
-      $scope.updateKeyPress($scope.key.exort);
-    }
-  });
-
-  hotkeys.add({
-    combo: $scope.key.invoke,
-    description: 'press ' + $scope.key.invoke,
-    callback: function() {
-      $scope.invokeSkill();
-    }
-  });
-
-  hotkeys.add({
-    combo: $scope.key.spell1,
-    description: 'press ' + $scope.key.spell1,
-    callback: function() {
-      $scope.validateSkill1();
-    }
-  });
-
-  hotkeys.add({
-    combo: $scope.key.spell2,
-    description: 'press ' + $scope.key.spell2,
-    callback: function() {
-      $scope.validateSkill2();
-    }
-  });
-
   /* ================================================================ PRIVATE - HELPER
   */
 
@@ -436,4 +384,55 @@ angular.module(appName).controller('mainController', [
 
     $scope.setTargetedSkill();
   }
+
+  /*================================================================ PUBLIC - KEY BINDING
+  */
+
+  hotkeys.add({
+    combo: $scope.key.quas,
+    description: 'press ' + $scope.key.quas,
+    callback: function() {
+      $scope.updateKeyPress($scope.key.quas);
+    }
+  });
+
+  hotkeys.add({
+    combo: $scope.key.wex,
+    description: 'press ' + $scope.key.wex,
+    callback: function() {
+      $scope.updateKeyPress($scope.key.wex);
+    }
+  });
+
+  hotkeys.add({
+    combo: $scope.key.exort,
+    description: 'press ' + $scope.key.exort,
+    callback: function() {
+      $scope.updateKeyPress($scope.key.exort);
+    }
+  });
+
+  hotkeys.add({
+    combo: $scope.key.invoke,
+    description: 'press ' + $scope.key.invoke,
+    callback: function() {
+      $scope.invokeSkill();
+    }
+  });
+
+  hotkeys.add({
+    combo: $scope.key.spell1,
+    description: 'press ' + $scope.key.spell1,
+    callback: function() {
+      $scope.validateSkill1();
+    }
+  });
+
+  hotkeys.add({
+    combo: $scope.key.spell2,
+    description: 'press ' + $scope.key.spell2,
+    callback: function() {
+      $scope.validateSkill2();
+    }
+  });
 }]);
