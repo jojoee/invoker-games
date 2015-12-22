@@ -294,6 +294,14 @@ angular.module(appName).controller('mainController', [
     return orbClass;
   }
 
+  $scope.getSpell1CssClass = function () {
+    return getSpellCssClass(0);
+  }
+
+  $scope.getSpell2CssClass = function () {
+    return getSpellCssClass(1);
+  }
+
   $scope.init = function () {
     initSkillData();
   }
@@ -352,14 +360,6 @@ angular.module(appName).controller('mainController', [
 
     // update stat
     $scope.stats.latestKey = $scope.key.invoke;
-  }
-
-  $scope.getSpell1CssClass = function () {
-    return getSpellCssClass(0);
-  }
-
-  $scope.getSpell2CssClass = function () {
-    return getSpellCssClass(1);
   }
 
   $scope.validateSkill1 = function () {
