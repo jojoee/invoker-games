@@ -46,6 +46,7 @@ For practicing your invoker skills
   - [ ] invoker profile
   - [ ] videos
   - [ ] article and trick
+- [ ] Add [Web Font Loader](https://developers.google.com/fonts/docs/webfont_loader?hl=en)
 
 ## Thx
 
