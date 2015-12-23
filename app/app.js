@@ -6,52 +6,65 @@ var appName = 'invoApp';
   #INIT
   ================================================================*/
 
-angular.module(appName, ['ngRoute', 'LocalStorageModule', 'cfp.hotkeys'])
-.config(function(appConstant, localStorageServiceProvider){
-  var appPrefix = appConstant.appPrefix;
-  localStorageServiceProvider.setPrefix(appPrefix);
-})
-.run(['$log', function ($log) {
-  $log.log('run run()');
-}]);
+angular
+  .module(appName, ['ngRoute', 'LocalStorageModule', 'cfp.hotkeys'])
+  .config(function (appConstant, localStorageServiceProvider) {
+    var appPrefix = appConstant.appPrefix;
+    localStorageServiceProvider.setPrefix(appPrefix);
+  })
+  .run(['$log', function ($log) {
+    $log.log('run run()');
+  }]);
 
 /*================================================================
   #CONSTANT
   ================================================================*/
 
-angular.module(appName).constant('appConstant', {
-  name : 'Invoker Games',
-  cssPath: 'css',
-  jsPath: 'js',
-  imgPath: 'img',
-  jsonPath: 'json',
+angular
+  .module(appName)
+  .constant('appConstant', {
+    name : 'Invoker Games',
+    cssPath: 'css',
+    jsPath: 'js',
+    imgPath: 'img',
+    jsonPath: 'json',
 
-  // resource
-  skillJsonPath: 'json/skills.json',
+    // resource
+    skillJsonPath: 'json/skills.json',
 
-  // local storage
-  appPrefix: 'invoApp',
-  appSkillDataName: 'skills'
-});
+    // local storage
+    appPrefix: 'invoApp',
+    appSkillDataName: 'skills'
+  }
+);
 
 /*================================================================
   #VALUE
   ================================================================*/
 
-angular.module(appName).value('keyValue', {
-  'quas': 'q',
-  'wex': 'w',
-  'exort': 'e',
-  'invoke': 'r',
-  'spell1': 'd',
-  'spell2': 'f'
-});
+angular
+  .module(appName)
+  .value('keyValue', {
+    'quas': 'q',
+    'wex': 'w',
+    'exort': 'e',
+    'invoke': 'r',
+    'spell1': 'd',
+    'spell2': 'f'
+  }
+);
 
 /*================================================================
   #FACTORY
   ================================================================*/
 
-angular.module(appName).factory('skillService', ['$log', '$http', 'appConstant', function ($log, $http, appConstant) {
+angular
+  .module(appName)
+  .factory('skillService', skillService);
+
+skillService.$inject = ['$log', '$http', 'appConstant'];
+
+function skillService($log, $http, appConstant) {
   var skillJsonPath = appConstant.skillJsonPath;
   var skills = null;
 
@@ -67,9 +80,15 @@ angular.module(appName).factory('skillService', ['$log', '$http', 'appConstant',
       }
     };
   }
-}]);
+}
 
-angular.module(appName).factory('statService', function () {
+angular
+  .module(appName)
+  .factory('statService', statService);
+
+statService.$inject = [];
+
+function statService() {
   var startedStats = {
     'nPressed': 0,
     'nSkillInvoked': 0,
@@ -92,44 +111,51 @@ angular.module(appName).factory('statService', function () {
       return startedStats;
     }
   }
-});
+}
 
 /*================================================================
   #CONTROLLER
   ================================================================*/
 
-angular.module(appName).controller('mainController', [
+angular
+  .module(appName)
+  .controller('mainController', mainController);
+
+mainController.$inject = [
   '$scope', '$http', '$log', // angular core
   'localStorageService', 'hotkeys', // third party
-  'appConstant', 'skillService', 'keyValue', 'statService', // app
-  function ($scope, $http, $log, localStorageService, hotkeys, appConstant, skillService, keyValue, statService) {
+  'appConstant', 'skillService', 'keyValue', 'statService' // app
+];
 
+function mainController($scope, $http, $log, localStorageService, hotkeys, appConstant, skillService, keyValue, statService) {
   var imgPath = appConstant.imgPath;
   var appSkillDataName = appConstant.appSkillDataName;
+
+  var vm = this;
 
   // gameStage
   // - start
   // - over
-  $scope.gameStage = 'start'; // unused
-  $scope.key = keyValue;
-  $scope.stats = statService.get();
-  $scope.invokedOrbs = ['', '', '']; // starter key pressed
-  $scope.skills = localStorageService.get(appSkillDataName); // null
-  $scope.nSkill = 0;
-  $scope.targetedSkill = null;
-  $scope.invokedSkills = [null, null]; // only 2 skills
+  vm.gameStage = 'start'; // unused
+  vm.key = keyValue;
+  vm.stats = statService.get();
+  vm.invokedOrbs = ['', '', '']; // starter key pressed
+  vm.skills = localStorageService.get(appSkillDataName); // null
+  vm.nSkill = 0;
+  vm.targetedSkill = null;
+  vm.invokedSkills = [null, null]; // only 2 skills
 
   /* ================================================================ PRIVATE - HELPER
   */
 
-  var hasNoInvokedSkill = function () {
-    return $scope.invokedSkills[0] === null;
+  function hasNoInvokedSkill() {
+    return vm.invokedSkills[0] === null;
   }
 
   // unused
-  var hasOneInvokedSkill = function () {
-    if ($scope.invokedSkills[0] !== null &&
-      $scope.invokedSkills[1] === null) {
+  function hasOneInvokedSkill() {
+    if (vm.invokedSkills[0] !== null &&
+      vm.invokedSkills[1] === null) {
       return true;
 
     } else {
@@ -137,21 +163,21 @@ angular.module(appName).controller('mainController', [
     }
   }
 
-  var updateNPressedPerSkill = function () {
-    if ($scope.stats.nSkillInvoked > 0) {
-      $scope.stats.nPressedPerSkill = $scope.stats.nPressed / $scope.stats.nSkillInvoked;
+  function updateNPressedPerSkill() {
+    if (vm.stats.nSkillInvoked > 0) {
+      vm.stats.nPressedPerSkill = vm.stats.nPressed / vm.stats.nSkillInvoked;
     }
   }
 
-  var updateNPressedPerTargetedSkill = function () {
-    if ($scope.stats.nTargetedSkillInvoked > 0) {
-      $scope.stats.nPressedPerTargetedSkill = $scope.stats.nPressed / $scope.stats.nTargetedSkillInvoked;
+  function updateNPressedPerTargetedSkill() {
+    if (vm.stats.nTargetedSkillInvoked > 0) {
+      vm.stats.nPressedPerTargetedSkill = vm.stats.nPressed / vm.stats.nTargetedSkillInvoked;
     }
   }
 
-  var getTargetedSkill = function () {
-    var randomSkillIdx = _.random(0, $scope.nSkill - 1);
-    var randomSkill = $scope.skills[randomSkillIdx];
+  function getTargetedSkill() {
+    var randomSkillIdx = _.random(0, vm.nSkill - 1);
+    var randomSkill = vm.skills[randomSkillIdx];
     var randomSkillKey = randomSkill.key;
 
     // first generate targeted skill (no invoked skill)
@@ -161,7 +187,7 @@ angular.module(appName).controller('mainController', [
     // has one invoked skill and
     // otherwise
     } else {
-      if (randomSkill.key === $scope.invokedSkills[0].key) {
+      if (randomSkill.key === vm.invokedSkills[0].key) {
         $log.log('generated skill is duplicate with latest invoked skill, it will generate new one');
 
         return getTargetedSkill();
@@ -174,35 +200,35 @@ angular.module(appName).controller('mainController', [
     return randomSkill;
   }
 
-  var updateInvokedSkills = function (skill) {
+  function updateInvokedSkills(skill) {
     // first invoked skill
     if (hasNoInvokedSkill()) {
-      $scope.invokedSkills[0] = skill;
+      vm.invokedSkills[0] = skill;
 
     // second invoked skill and
     // otherwise
     } else {
-      $scope.invokedSkills[1] = $scope.invokedSkills[0];
-      $scope.invokedSkills[0] = skill;
+      vm.invokedSkills[1] = vm.invokedSkills[0];
+      vm.invokedSkills[0] = skill;
     }
   }
 
-  var orderAllSkillOrbs = function () {
-    angular.forEach($scope.skills, function (val, key) {
-      $scope.skills[key].orbs = _.sortBy(val.orbs);
+  function orderAllSkillOrbs() {
+    angular.forEach(vm.skills, function (val, key) {
+      vm.skills[key].orbs = _.sortBy(val.orbs);
     });
   }
 
-  var initSkillData = function () {
-    if (! $scope.skills) {
+  function initSkillData() {
+    if (! vm.skills) {
       $log.log('not found skill\'s data in local storage');
 
       skillService.get().then(function (res) {
         var skills = res.data;
         var skillsJson = angular.toJson(skills);
 
-        $scope.skills = skills
-        $scope.nSkill = $scope.skills.length;
+        vm.skills = skills
+        vm.nSkill = vm.skills.length;
 
         setTargetedSkill();
         orderAllSkillOrbs();
@@ -212,21 +238,21 @@ angular.module(appName).controller('mainController', [
 
     } else {
 
-      $scope.skills = JSON.parse($scope.skills);
-      $scope.nSkill = $scope.skills.length;
+      vm.skills = JSON.parse(vm.skills);
+      vm.nSkill = vm.skills.length;
 
       setTargetedSkill();
       orderAllSkillOrbs();
     }
 
-    $log.debug('$scope.skills', $scope.skills);
-    $log.debug('$scope.nSkill', $scope.nSkill);
+    $log.debug('$scope.skills', vm.skills);
+    $log.debug('$scope.nSkill', vm.nSkill);
   }
 
-  var setTargetedSkill = function() {
-    $scope.targetedSkill = getTargetedSkill();
+  function setTargetedSkill() {
+    vm.targetedSkill = getTargetedSkill();
 
-    $log.debug('$scope.targetedSkill', $scope.targetedSkill);
+    $log.debug('$scope.targetedSkill', vm.targetedSkill);
   }
 
   // have to order it first
@@ -234,28 +260,28 @@ angular.module(appName).controller('mainController', [
   // 
   // http://stackoverflow.com/questions/28947253/sort-array-with-lodash-by-value-integer
   // http://stackoverflow.com/questions/29951293/using-lodash-to-compare-arrays
-  var isSameOrbArr = function (orderedArr1, orderedArr2) {
+  function isSameOrbArr(orderedArr1, orderedArr2) {
     return _.isEqual(orderedArr1, orderedArr2);
   }
 
-  var getSpellCssClass = function (idx) {
-    var skill = $scope.invokedSkills[idx];
-    var cssClass = (skill) ? $scope.getSkillCssClass(skill.key) : '';
+  function getSpellCssClass(idx) {
+    var skill = vm.invokedSkills[idx];
+    var cssClass = (skill) ? vm.getSkillCssClass(skill.key) : '';
 
     return cssClass;
   }
 
-  var validateSkill = function (invokedSkill) {
+  function validateSkill(invokedSkill) {
     if (invokedSkill) {
-      if (invokedSkill.key === $scope.targetedSkill.key) {
+      if (invokedSkill.key === vm.targetedSkill.key) {
         $log.log('valid skill');
 
         // generate new targeted skill
         setTargetedSkill();
 
         // update stat
-        $scope.stats.nStage++;
-        $scope.stats.nTargetedSkillInvoked++;
+        vm.stats.nStage++;
+        vm.stats.nTargetedSkillInvoked++;
         updateNPressedPerTargetedSkill();
 
       } else {
@@ -268,15 +294,15 @@ angular.module(appName).controller('mainController', [
   */
   
   // unused
-  $scope.getSkillImgPath = function (fileName) {
+  vm.getSkillImgPath = function (fileName) {
     return imgPath + '/' + fileName;
   };
 
-  $scope.getSkillCssClass = function (skillKey) {
+  vm.getSkillCssClass = function (skillKey) {
     return 'skill-' + skillKey;
   };
 
-  $scope.getOrbClass = function (orb) {
+  vm.getOrbClass = function (orb) {
     var orbClass = 'orb-quas';
 
     switch (orb) {
@@ -294,38 +320,38 @@ angular.module(appName).controller('mainController', [
     return orbClass;
   }
 
-  $scope.getSpell1CssClass = function () {
+  vm.getSpell1CssClass = function () {
     return getSpellCssClass(0);
   }
 
-  $scope.getSpell2CssClass = function () {
+  vm.getSpell2CssClass = function () {
     return getSpellCssClass(1);
   }
 
-  $scope.init = function () {
+  vm.init = function () {
     initSkillData();
   }
 
   /* ================================================================ PUBLIC - EVENT
   */
 
-  $scope.updateKeyPress = function (key) {
+  vm.updateKeyPress = function (key) {
     // update invoked orbs
-    $scope.invokedOrbs.shift(); // remove zero index
-    $scope.invokedOrbs.push(key); // add new key
+    vm.invokedOrbs.shift(); // remove zero index
+    vm.invokedOrbs.push(key); // add new key
 
     // update stat
-    $scope.stats.nPressed++;
-    $scope.stats.latestKey = key;
+    vm.stats.nPressed++;
+    vm.stats.latestKey = key;
     updateNPressedPerSkill();
   }
 
-  $scope.invokeSkill = function () {
+  vm.invokeSkill = function () {
     var loopFlag = true;
     var invokedSkill = null;
-    var invokedOrbs = _.sortBy($scope.invokedOrbs);
+    var invokedOrbs = _.sortBy(vm.invokedOrbs);
 
-    angular.forEach($scope.skills, function (skill, key) {
+    angular.forEach(vm.skills, function (skill, key) {
       if (loopFlag) {
         if (isSameOrbArr(invokedOrbs, skill.orbs)) {
           invokedSkill = skill;
@@ -334,8 +360,8 @@ angular.module(appName).controller('mainController', [
       }
     });
 
-    var invokedSkill1Key = ($scope.invokedSkills[0]) ? $scope.invokedSkills[0].key : '';
-    var invokedSkill2Key = ($scope.invokedSkills[1]) ? $scope.invokedSkills[0].key : '';
+    var invokedSkill1Key = (vm.invokedSkills[0]) ? vm.invokedSkills[0].key : '';
+    var invokedSkill2Key = (vm.invokedSkills[1]) ? vm.invokedSkills[0].key : '';
 
     if (invokedSkill && invokedSkill.key) {
       if (invokedSkill.key !== invokedSkill1Key &&
@@ -346,7 +372,7 @@ angular.module(appName).controller('mainController', [
         updateInvokedSkills(invokedSkill);
 
         // update stat
-        $scope.stats.nSkillInvoked++;
+        vm.stats.nSkillInvoked++;
         updateNPressedPerSkill();
 
       } else {
@@ -359,28 +385,28 @@ angular.module(appName).controller('mainController', [
     }
 
     // update stat
-    $scope.stats.latestKey = $scope.key.invoke;
+    vm.stats.latestKey = vm.key.invoke;
   }
 
-  $scope.validateSkill1 = function () {
-    validateSkill($scope.invokedSkills[0]);
+  vm.validateSkill1 = function () {
+    validateSkill(vm.invokedSkills[0]);
 
     // update stat
-    $scope.stats.latestKey = $scope.key.spell1;
+    vm.stats.latestKey = vm.key.spell1;
   }
 
-  $scope.validateSkill2 = function () {
-    validateSkill($scope.invokedSkills[1]);
+  vm.validateSkill2 = function () {
+    validateSkill(vm.invokedSkills[1]);
 
     // update stat
-    $scope.stats.latestKey = $scope.key.spell2;
+    vm.stats.latestKey = vm.key.spell2;
   }
 
-  $scope.resetGame = function () {
+  vm.resetGame = function () {
     $log.log('statService.reset()', statService.reset());
-    $scope.stats = statService.reset();
-    $scope.invokedSkills = [null, null];
-    $scope.invokedOrbs = ['', '', ''];
+    vm.stats = statService.reset();
+    vm.invokedSkills = [null, null];
+    vm.invokedOrbs = ['', '', ''];
 
     setTargetedSkill();
   }
@@ -389,50 +415,50 @@ angular.module(appName).controller('mainController', [
   */
 
   hotkeys.add({
-    combo: $scope.key.quas,
-    description: 'press ' + $scope.key.quas,
+    combo: vm.key.quas,
+    description: 'press ' + vm.key.quas,
     callback: function() {
-      $scope.updateKeyPress($scope.key.quas);
+      vm.updateKeyPress(vm.key.quas);
     }
   });
 
   hotkeys.add({
-    combo: $scope.key.wex,
-    description: 'press ' + $scope.key.wex,
+    combo: vm.key.wex,
+    description: 'press ' + vm.key.wex,
     callback: function() {
-      $scope.updateKeyPress($scope.key.wex);
+      vm.updateKeyPress(vm.key.wex);
     }
   });
 
   hotkeys.add({
-    combo: $scope.key.exort,
-    description: 'press ' + $scope.key.exort,
+    combo: vm.key.exort,
+    description: 'press ' + vm.key.exort,
     callback: function() {
-      $scope.updateKeyPress($scope.key.exort);
+      vm.updateKeyPress(vm.key.exort);
     }
   });
 
   hotkeys.add({
-    combo: $scope.key.invoke,
-    description: 'press ' + $scope.key.invoke,
+    combo: vm.key.invoke,
+    description: 'press ' + vm.key.invoke,
     callback: function() {
-      $scope.invokeSkill();
+      vm.invokeSkill();
     }
   });
 
   hotkeys.add({
-    combo: $scope.key.spell1,
-    description: 'press ' + $scope.key.spell1,
+    combo: vm.key.spell1,
+    description: 'press ' + vm.key.spell1,
     callback: function() {
-      $scope.validateSkill1();
+      vm.validateSkill1();
     }
   });
 
   hotkeys.add({
-    combo: $scope.key.spell2,
-    description: 'press ' + $scope.key.spell2,
+    combo: vm.key.spell2,
+    description: 'press ' + vm.key.spell2,
     callback: function() {
-      $scope.validateSkill2();
+      vm.validateSkill2();
     }
   });
-}]);
+}
