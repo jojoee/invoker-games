@@ -119,15 +119,15 @@ function statService() {
 
 angular
   .module(appName)
-  .controller('mainController', mainController);
+  .controller('MainController', MainController);
 
-mainController.$inject = [
+MainController.$inject = [
   '$scope', '$http', '$log', // angular core
   'localStorageService', 'hotkeys', // third party
   'appConstant', 'skillService', 'keyValue', 'statService' // app
 ];
 
-function mainController($scope, $http, $log, localStorageService, hotkeys, appConstant, skillService, keyValue, statService) {
+function MainController($scope, $http, $log, localStorageService, hotkeys, appConstant, skillService, keyValue, statService) {
   var imgPath = appConstant.imgPath;
   var appSkillDataName = appConstant.appSkillDataName;
 
@@ -245,14 +245,14 @@ function mainController($scope, $http, $log, localStorageService, hotkeys, appCo
       orderAllSkillOrbs();
     }
 
-    $log.debug('$scope.skills', vm.skills);
-    $log.debug('$scope.nSkill', vm.nSkill);
+    $log.debug('vm.skills', vm.skills);
+    $log.debug('vm.nSkill', vm.nSkill);
   }
 
   function setTargetedSkill() {
     vm.targetedSkill = getTargetedSkill();
 
-    $log.debug('$scope.targetedSkill', vm.targetedSkill);
+    $log.debug('vm.targetedSkill', vm.targetedSkill);
   }
 
   // have to order it first
