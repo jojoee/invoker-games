@@ -31,7 +31,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.2/angular-local-storage.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-hotkeys/1.6.0/hotkeys.min.js"></script>
 
-<script>var appName = 'invoApp';</script>
 <script src="app.js"></script>
 <script src="services/skill.js"></script>
 <script src="services/stat.js"></script>
@@ -71,15 +70,15 @@
             </div><!-- .pressed-key-wrap -->
 
             <div class="key-wrap">
-              <div ng-click="updateKeyPress(main.key.quas)" class="key-box key-quas"><div class="key">{{main.key.quas}}</div></div>
-              <div ng-click="updateKeyPress(main.key.wex)" class="key-box key-wex"><div class="key">{{main.key.wex}}</div></div>
-              <div ng-click="updateKeyPress(main.key.exort)" class="key-box key-exort"><div class="key">{{main.key.exort}}</div></div>
-              <div ng-click="validateSkill1()" class="key-box key-spell1 {{main.getSpell1CssClass()}}"><div class="key">{{main.key.spell1}}</div></div>
-              <div ng-click="validateSkill2()" class="key-box key-spell2 {{main.getSpell2CssClass()}}"><div class="key">{{main.key.spell2}}</div></div>
-              <div ng-click="invokeSkill()" class="key-box key-invoke"><div class="key">{{main.key.invoke}}</div></div>
+              <div ng-click="main.updateKeyPress(main.key.quas)" class="key-box key-quas"><div class="key">{{main.key.quas}}</div></div>
+              <div ng-click="main.updateKeyPress(main.key.wex)" class="key-box key-wex"><div class="key">{{main.key.wex}}</div></div>
+              <div ng-click="main.updateKeyPress(main.key.exort)" class="key-box key-exort"><div class="key">{{main.key.exort}}</div></div>
+              <div ng-click="main.validateSkill1()" class="key-box key-spell1 {{main.getSpell1CssClass()}}"><div class="key">{{main.key.spell1}}</div></div>
+              <div ng-click="main.validateSkill2()" class="key-box key-spell2 {{main.getSpell2CssClass()}}"><div class="key">{{main.key.spell2}}</div></div>
+              <div ng-click="main.invokeSkill()" class="key-box key-invoke"><div class="key">{{main.key.invoke}}</div></div>
             </div><!-- .key-wrap -->
 
-            <div class="reset-btn" ng-click="resetGame()">Reset</div>
+            <div class="reset-btn" ng-click="main.resetGame()">Reset</div>
           </div><!-- .ig-game-inner -->
         </div><!-- .ig-game -->
         <div class="ig-trick columns">
