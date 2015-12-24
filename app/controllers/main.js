@@ -32,6 +32,35 @@ function MainController($scope, $http, $log, localStorageService, hotkeys, appCo
   vm.targetedSkill = null;
   vm.invokedSkills = [null, null]; // only 2 skills
 
+  // private - helper
+  vm.hasNoInvokedSkill = hasNoInvokedSkill;
+  vm.hasOneInvokedSkill = hasOneInvokedSkill;
+  vm.updateNPressedPerSkill = updateNPressedPerSkill;
+  vm.updateNPressedPerTargetedSkill = updateNPressedPerTargetedSkill;
+  vm.getTargetedSkill = getTargetedSkill;
+  vm.updateInvokedSkills = updateInvokedSkills;
+  vm.orderAllSkillOrbs = orderAllSkillOrbs;
+  vm.initSkillData = initSkillData;
+  vm.setTargetedSkill = setTargetedSkill;
+  vm.isSameOrbArr = isSameOrbArr;
+  vm.getSpellCssClass = getSpellCssClass;
+  vm.validateSkill = validateSkill;
+
+  // public - helper & init
+  vm.getSkillImgPath = getSkillImgPath
+  vm.getSkillCssClass = getSkillCssClass;
+  vm.getOrbClass = getOrbClass;
+  vm.getSpell1CssClass = getSpell1CssClass;  
+  vm.getSpell2CssClass = getSpell2CssClass;
+  vm.init = init;
+
+  // public - event
+  vm.updateKeyPress = updateKeyPress;
+  vm.invokeSkill = invokeSkill;
+  vm.validateSkill1 = validateSkill1;
+  vm.validateSkill2 = validateSkill2;
+  vm.resetGame = resetGame;
+
   /* ================================================================ PRIVATE - HELPER
   */
 
@@ -181,15 +210,15 @@ function MainController($scope, $http, $log, localStorageService, hotkeys, appCo
   */
   
   // unused
-  vm.getSkillImgPath = function (fileName) {
+  function getSkillImgPath(fileName) {
     return imgPath + '/' + fileName;
   };
 
-  vm.getSkillCssClass = function (skillKey) {
+  function getSkillCssClass(skillKey) {
     return 'skill-' + skillKey;
   };
 
-  vm.getOrbClass = function (orb) {
+  function getOrbClass(orb) {
     var orbClass = 'orb-quas';
 
     switch (orb) {
@@ -207,22 +236,22 @@ function MainController($scope, $http, $log, localStorageService, hotkeys, appCo
     return orbClass;
   }
 
-  vm.getSpell1CssClass = function () {
+  function getSpell1CssClass() {
     return getSpellCssClass(0);
   }
 
-  vm.getSpell2CssClass = function () {
+  function getSpell2CssClass() {
     return getSpellCssClass(1);
   }
 
-  vm.init = function () {
+  function init() {
     initSkillData();
   }
 
   /* ================================================================ PUBLIC - EVENT
   */
 
-  vm.updateKeyPress = function (key) {
+  function updateKeyPress(key) {
     // update invoked orbs
     vm.invokedOrbs.shift(); // remove zero index
     vm.invokedOrbs.push(key); // add new key
@@ -233,7 +262,7 @@ function MainController($scope, $http, $log, localStorageService, hotkeys, appCo
     updateNPressedPerSkill();
   }
 
-  vm.invokeSkill = function () {
+  function invokeSkill() {
     var loopFlag = true;
     var invokedSkill = null;
     var invokedOrbs = _.sortBy(vm.invokedOrbs);
@@ -275,21 +304,21 @@ function MainController($scope, $http, $log, localStorageService, hotkeys, appCo
     vm.stats.latestKey = vm.key.invoke;
   }
 
-  vm.validateSkill1 = function () {
+  function validateSkill1() {
     validateSkill(vm.invokedSkills[0]);
 
     // update stat
     vm.stats.latestKey = vm.key.spell1;
   }
 
-  vm.validateSkill2 = function () {
+  function validateSkill2() {
     validateSkill(vm.invokedSkills[1]);
 
     // update stat
     vm.stats.latestKey = vm.key.spell2;
   }
 
-  vm.resetGame = function () {
+  function resetGame() {
     $log.log('statService.reset()', statService.reset());
     vm.stats = statService.reset();
     vm.invokedSkills = [null, null];
