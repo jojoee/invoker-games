@@ -47,6 +47,8 @@ For practicing your invoker skills
   - [ ] videos
   - [ ] article and trick
 - [ ] Add [Web Font Loader](https://developers.google.com/fonts/docs/webfont_loader?hl=en)
+- [ ] Clean `karma.conf.js`
+- [ ] Clean `package.json`
 
 ## Thx
 
