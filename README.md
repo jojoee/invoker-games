@@ -8,7 +8,7 @@ For practicing your invoker skills
 - `plural` for file name naming, otherwise `singular`
 - [Angular Style Guide](https://github.com/johnpapa/angular-styleguide) by johnpapa
 - [Folder Structure](http://stackoverflow.com/questions/18542353/angularjs-folder-structure)
-- required browser 
+- Required browser 
   - IE >= 8
   - Firefox >= 41
   - Chrome >= 43
@@ -17,42 +17,44 @@ For practicing your invoker skills
 
 ## Todo
 
-- [ ] add scoreboard (stored by [firebase](https://www.firebase.com/))
-- [ ] add `no js` screen and message
-- [ ] add `outdated browser` screen and message
-- [ ] add unit test
-- [ ] add acceptance test
-- [ ] separate angular files (e.g. controller, service, etc.)
-- [ ] separate scss file
-- [ ] update game title message
-- [ ] add countdown bar
-- [ ] add `How to Remember` section
-- [ ] add `How to Play` section
-- [ ] add footer
-- [ ] redesign layout
-- [ ] add top / header menu
-- [ ] make it responsive
-- [ ] change `key`
-- [ ] add favicon
-- [ ] add more games
-- [ ] add `combination` feature (each stage can have 4 targeted skills)
-- [ ] add `combination` stats
-- [ ] add error screen when we can not get skill data
-- [ ] handle app when waiting skill data from http request
-- [ ] when click `Reset` button then remove invoked orbs
-- [ ] unordered skill orbs on right sidebar
-- [ ] change sass compression type (from `compressed` to `expanded`)
-- [ ] add pages
-  - [ ] invoker profile
-  - [ ] videos
-  - [ ] article and trick
+- [ ] Add scoreboard (stored by [firebase](https://www.firebase.com/))
+- [ ] Add `no js` screen and message
+- [ ] Add `outdated browser` screen and message
+- [x] Add unit test
+- [ ] Add acceptance test
+- [ ] Separate angular files (e.g. controller, service, etc.)
+- [ ] Separate scss file
+- [ ] Update game title message
+- [ ] Add countdown bar
+- [ ] Add `How to Remember` section
+- [ ] Add `How to Play` section
+- [ ] Add footer
+- [ ] Redesign layout
+- [ ] Add top / header menu
+- [ ] Make it responsive
+- [ ] Change `key`
+- [ ] Add favicon
+- [ ] Add more games
+- [ ] Add `combination` feature (each stage can have 4 targeted skills)
+- [ ] Add `combination` stats
+- [ ] Add error screen when we can not get skill data
+- [ ] Handle app when waiting skill data from http request
+- [ ] When click `Reset` button then remove invoked orbs
+- [ ] Unordered skill orbs on right sidebar
+- [ ] Change sass compression type (from `compressed` to `expanded`)
+- [ ] Add pages
+  - [ ] Invoker profile
+  - [ ] Videos
+  - [ ] Article and trick
 - [ ] Add [Web Font Loader](https://developers.google.com/fonts/docs/webfont_loader?hl=en)
 - [ ] Clean `karma.conf.js`
 - [ ] Clean `package.json`
+- [ ] Complete `unit test`
+- [ ] Complete `acceptance test`
 
 ## Thx
 
-- generate favicon by [realfavicongenerator.net](http://realfavicongenerator.net/)
+- Generate favicon by [realfavicongenerator.net](http://realfavicongenerator.net/)
 - [Dota2](http://www.dota2.com/)
 - [Foundation](http://foundation.zurb.com/)
 - [Gulp](http://gulpjs.com/)
