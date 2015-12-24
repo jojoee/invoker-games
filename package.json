@@ -22,10 +22,26 @@
     "gulp": "^3.9.0",
     "gulp-notify": "^2.2.0",
     "gulp-sass": "^2.1.1",
+    "chai": "^3.4.1",
+    "sinon": "^1.17.2",
+    "mocha": "^2.3.4",
     "jasmine-core": "^2.4.1",
+    "phantomjs": "^1.9.19",
     "karma": "^0.13.15",
+    "karma-chai": "^0.1.0",
+    "karma-sinon": "^1.0.4",
+    "karma-sinon-chai": "^1.1.0",
     "karma-jasmine": "^0.3.6",
+    "karma-mocha": "^0.2.1",
+    "karma-chrome-launcher": "^0.2.2",
     "karma-phantomjs-launcher": "^0.2.1",
-    "phantomjs": "^1.9.19"
+    "karma-junit-reporter": "^0.3.8"
+  },
+  "scripts": {
+    "pretest": "bower install && npm install",
+    "test": "karma start karma.conf.js",
+
+    "prestart": "bower install && npm install",
+    "start": "gulp default"
   }
 }
