@@ -130,7 +130,7 @@ function MainController($scope, $http, $log, localStorageService, hotkeys, appCo
   }
 
   function orderAllSkillOrbs() {
-    angular.forEach(vm.skills, function (val, key) {
+    angular.forEach(vm.skills, function(val, key) {
       vm.skills[key].orbs = _.sortBy(val.orbs);
     });
   }
@@ -139,7 +139,7 @@ function MainController($scope, $http, $log, localStorageService, hotkeys, appCo
     if (! vm.skills) {
       $log.log('not found skill\'s data in local storage');
 
-      skillService.get().then(function (res) {
+      skillService.get().then(function(res) {
         var skills = res.data;
         var skillsJson = angular.toJson(skills);
 
@@ -267,7 +267,7 @@ function MainController($scope, $http, $log, localStorageService, hotkeys, appCo
     var invokedSkill = null;
     var invokedOrbs = _.sortBy(vm.invokedOrbs);
 
-    angular.forEach(vm.skills, function (skill, key) {
+    angular.forEach(vm.skills, function(skill, key) {
       if (loopFlag) {
         if (isSameOrbArr(invokedOrbs, skill.orbs)) {
           invokedSkill = skill;

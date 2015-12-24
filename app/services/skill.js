@@ -21,7 +21,7 @@ function skillService($log, $http, appConstant) {
     $log.log('skillService - not found skill\'s data');
 
     return {
-      get: function () {
+      get: function() {
         return $http.get(skillJsonPath);
       }
     };
@@ -50,10 +50,10 @@ function statService() {
   var stats = JSON.parse(JSON.stringify(startedStats));
 
   return {
-    get: function () {
+    get: function() {
       return stats;
     },
-    reset: function () {
+    reset: function() {
       return startedStats;
     }
   }
