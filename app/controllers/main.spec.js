@@ -4,18 +4,26 @@ describe('Controllers: MainController', function() {
   var scope;
   var vm;
 
-  beforeEach(module(appName));
+  var skillService;
+  var $httpBackend;
+  var $rootScope;
+  var authRequestHandler; // unused
+  var appConstant;
 
-  beforeEach(inject(function($rootScope, $controller) {
-    scope = $rootScope.$new();
+  beforeEach(angular.mock.module(appName));
+
+  beforeEach(inject(function($rootScope, $controller, _$httpBackend_, _skillService_, _appConstant_) {
+    $httpBackend = _$httpBackend_;
+    scope = $rootScope.$new(); // unused
     vm = $controller('MainController', {
       $scope: scope // unused
     });
+    skillService = _skillService_;
+    appConstant = _appConstant_;
   }));
 
   describe('Methods', function() {
     it('all', function() {
-
       expect(vm.gameStage).to.be.equal('start');
 
       // vm.key = keyValue;
@@ -26,10 +34,27 @@ describe('Controllers: MainController', function() {
         expect(vm.invokedOrbs[i]).to.be.empty;
       };
 
-      // vm.skills = localStorageService.get(appSkillDataName); // null
-
       expect(vm.nSkill).to.be.equal(0);
-      expect(vm.targetedSkill).to.be.a('null');
+      expect(vm.targetedSkill).to.be.null;
+      var skillJsonPath = appConstant.skillJsonPath; 
+      $httpBackend.when('GET', skillJsonPath).respond(200, 
+        '[{"key":"cold-snap","name":"Cold Snap","orbs":["q","q","q"]},{"key":"ghost-walk","name":"Ghost Walk","orbs":["q","q","w"]},{"key":"ice-wall","name":"Ice Wall","orbs":["q","q","e"]},{"key":"emp","name":"EMP","orbs":["w","w","w"]},{"key":"tornado","name":"Tornado","orbs":["w","w","q"]},{"key":"alacrity","name":"Alacrity","orbs":["w","w","e"]},{"key":"sun-strike","name":"Sun Strike","orbs":["e","e","e"]},{"key":"forge-spirit","name":"Forge Spirit","orbs":["e","e","q"]},{"key":"chaos-meteor","name":"Chaos Meteor","orbs":["e","e","w"]},{"key":"deafening-blast","name":"Deafening Blast","orbs":["q","w","e"]}]'
+      );
+
+      // vm.init();
+      skillService.get()
+        .success(function(data, status, headers, config) {
+          vm.skills = data;
+          vm.nSkill = vm.skills.length;
+
+          vm.setTargetedSkill();
+          vm.orderAllSkillOrbs();
+        });      
+      $httpBackend.flush();
+
+      expect(vm.skills).not.to.be.null;
+      expect(vm.nSkill).to.be.equal(10);
+      expect(vm.targetedSkill).not.to.be.null;
 
       expect(vm.invokedSkills).to.have.length(2);
       for (var i = vm.invokedSkills.length - 1; i >= 0; i--) {
