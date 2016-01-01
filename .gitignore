@@ -5,11 +5,6 @@ components
 # backup
 bk
 
-# favicon
-app/*.png
-manifest.json
-safari-pinned-tab.svg
-
 # design
 *.psd
 
