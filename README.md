@@ -51,6 +51,7 @@ For practicing your invoker skills
 - [ ] Clean `package.json`
 - [ ] Complete `unit test`
 - [ ] Complete `acceptance test`
+- [ ] Add `ui-router`
 
 ## Thx
 
