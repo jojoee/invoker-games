@@ -2,6 +2,8 @@
 
 For practicing your invoker skills
 
+[![Screenshot](https://raw.githubusercontent.com/jojoee/invoker-games/gh-pages/screenshot.jpg "Screenshot")](http://jojoee.github.io/invoker-games/)
+
 ## App
 
 - 2 spaces for indent
