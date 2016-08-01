@@ -54,6 +54,8 @@ For practicing your invoker skills
 - [ ] Complete `unit test`
 - [ ] Complete `acceptance test`
 - [ ] Add `ui-router`
+- [ ] Refacotr global config
+- [ ] Implement `Google Analytics` in `AngularJS` style
 
 ## Thx
 
