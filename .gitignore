@@ -1,12 +1,9 @@
-# dependency
+# Dependency
 node_modules
 bower_components
 
-# backup
+# Backup
 bk
 
-# design
-*.psd
-
-# my note
-README2.md
+# Dist
+app/css/main.css

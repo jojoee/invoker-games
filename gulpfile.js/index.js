@@ -52,5 +52,5 @@ var allTasks = [
   'serve'
 ];
 
-gulp.task('all', allTasks); // for testing
-gulp.task('default', ['serve']);
+gulp.task('watch', allTasks); // for testing
+gulp.task('default', ['sass']);

@@ -17,6 +17,13 @@ For practicing your invoker skills
   - Safari >= 8
   - Opera >= 33
 
+## Getting Started
+
+1. Install NodeJs
+2. Install global: `npm install -g gulp`
+3. Install dependency: `bower install && npm install`
+3. Start: `gulp`
+
 ## Todo
 
 - [ ] Add scoreboard (stored by [firebase](https://www.firebase.com/))
@@ -57,6 +64,9 @@ For practicing your invoker skills
 - [ ] Refacotr global config
 - [ ] Implement `Google Analytics` in `AngularJS` style
 - [x] Add [GitHub Ribbons](https://github.com/blog/273-github-ribbons)
+- [ ] Remove log
+- [ ] Setup build task
+- [ ] Responsive
 
 ## Thx
 
@@ -65,3 +75,4 @@ For practicing your invoker skills
 - [Foundation](http://foundation.zurb.com/)
 - [Gulp](http://gulpjs.com/)
 - [InvokerTrainer](https://dl.dropboxusercontent.com/u/75495922/InvokerTrainer.htm)
+- Screenshot from [Dota 2 WTF Moments 120](https://www.youtube.com/watch?v=wQ_Vw_30Muk)

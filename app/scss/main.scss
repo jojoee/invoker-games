@@ -110,7 +110,8 @@ button {
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  background: $black;
+  background-image: url('../screenshot/screenshot1.jpg');
+  background-size: cover;
 }
 
 .skill-cold-snap        { background-image: url('../img/skill-cold-snap.png'); }
@@ -176,7 +177,7 @@ body {
   background-size: cover;
   background-position: top center;
   background-color: #647E8E;
-
+  background: rgba(100, 126, 142, 0.48)
   // background-image: url('../img/bg.jpg');
   // background-color: #060709;
 }
