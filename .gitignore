@@ -1,6 +1,6 @@
 # dependency
 node_modules
-components
+bower_components
 
 # backup
 bk
