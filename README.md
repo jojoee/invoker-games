@@ -56,6 +56,7 @@ For practicing your invoker skills
 - [ ] Add `ui-router`
 - [ ] Refacotr global config
 - [ ] Implement `Google Analytics` in `AngularJS` style
+- [x] Add [GitHub Ribbons](https://github.com/blog/273-github-ribbons)
 
 ## Thx
 
