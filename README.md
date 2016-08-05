@@ -48,7 +48,7 @@ For practicing your invoker skills
   - [ ] Invoker profile
   - [ ] Videos
   - [ ] Article and trick
-- [ ] Add [Web Font Loader](https://developers.google.com/fonts/docs/webfont_loader?hl=en)
+- [x] Add [Web Font Loader](https://developers.google.com/fonts/docs/webfont_loader?hl=en)
 - [ ] Clean `karma.conf.js`
 - [ ] Clean `package.json`
 - [ ] Complete `unit test`
