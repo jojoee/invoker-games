@@ -41,12 +41,14 @@
   "scripts": {
     "postinstall": "bower install",
 
+    "prestart": "bower install && npm install",
+    "start": "gulp watch",
+
+    "build": "bower install && npm install && gulp build",
+
     "pretest": "bower install && npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js  --single-run",
-
-    "prestart": "bower install && npm install",
-    "start": "gulp default",
 
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",

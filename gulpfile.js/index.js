@@ -53,4 +53,5 @@ var allTasks = [
 ];
 
 gulp.task('watch', allTasks); // for testing
+gulp.task('build', ['sass']);
 gulp.task('default', ['sass']);
