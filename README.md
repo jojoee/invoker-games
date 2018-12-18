@@ -2,7 +2,7 @@
 
 For practicing your invoker skills
 
-[![Screenshot](https://raw.githubusercontent.com/jojoee/invoker-games/gh-pages/screenshot.jpg "Screenshot")](http://jojoee.github.io/invoker-games/)
+[![Screenshot](https://raw.githubusercontent.com/jojoee/invoker-games/gh-pages/screenshot.jpg "Screenshot")](http://jojoee.github.io/invoker-games/) [![Greenkeeper badge](https://badges.greenkeeper.io/jojoee/invoker-games.svg)](https://greenkeeper.io/)
 
 ## App
 
